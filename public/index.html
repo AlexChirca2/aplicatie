@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Digital Dreams</title>
+   <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+   <div class="header">
+      <a href="index.html" class="header-logo">
+         <img src="./img/Logo Site.jpg" alt="Logo Site" class="product-image-logo-site">
+      </a>
+      <form id="searchForm" autocomplete="off">
+         <input type="text" id="searchBar" placeholder="Caută produsul dorit">
+         <div id="autocomplete-results" style="display: none;"></div>
+      </form>
+      <button onclick="window.location.href= '/html/favorite.html';" id="favoritesButton">&#9733; Favorite</button>
+      <button onclick="window.location.href= '/html/cosul meu.html';" id="cartButton">&#128722; Coșul meu</button>
+      <div id="cartPanel" style="display: none;"></div>
+   </div>
+   <hr>
+
+   <body>
+      <div class="promotions-banner">
+         <p class="promotion-message"><span class="star">&#9733;</span> Cele mai mici prețuri din România <span
+               class="star">&#9733;</span></p>
+         <p class="promotion-message"><span class="star">&#9733;</span> Oferte limitate <span
+               class="star">&#9733;</span></p>
+         <div class="promotions-container">
+            <div class="promotion-item">
+               <img src="./img/promo1.png" alt="Promotie 1">
+            </div>
+            <div class="promotion-item">
+               <img src="./img/promo2.png" alt="Promotie 2">
+            </div>
+            <div class="promotion-item">
+               <img src="./img/promo3.png" alt="Promotie 3">
+            </div>
+            <div class="promotion-item">
+               <img src="./img/promo4.png" alt="Promotie 4">
+            </div>
+         </div>
+      </div>
+      <div class="container" id="category-container">
+      </div>
+         <script src="script.js" type="module"></script>
+         <script src="search.js" type="module"></script>
+         <script src="account.js" type="module"></script>
+
+      <hr>
+      <footer class="footer">
+         <div class="contact-info">
+            <a href="./html/despre noi.html" class="despre-noi-link">Despre Digital Dreams</a>
+            <p>Telefon: 0765-382-096</p>
+            <p>Email: contact@digitaldreams@gmail.com</p>
+         </div>
+      </footer>
+   </body>
+
+</html>

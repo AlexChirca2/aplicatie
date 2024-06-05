@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Dreams</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <div class="header">
+        <a href="../index.html" class="header-logo">
+            <img src="../img/Logo Site.jpg" alt="Logo Site" class="product-image-logo-site">
+        </a>
+        <form id="searchForm" autocomplete="off">
+            <input type="text" id="searchBar" placeholder="Caută produsul dorit">
+            <div id="autocomplete-results" style="display: none;"></div>
+        </form>
+        <button onclick="window.location.href= '/html/favorite.html';" id="favoritesButton">&#9733; Favorite</button>
+      <button onclick="window.location.href= '/html/cosul meu.html';" id="cartButton">&#128722; Coșul meu</button>
+        <div id="cartPanel" style="display: none;"></div>
+    </div>
+    <hr>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit" id="login-button">Login</button>
+            <p id="login-error" style="display: none;color: red">Username sau parola incorecte</p>
+            <p>Nu ai cont? <a href="/html/register.html">Înregistrează-te</a></p>
+        </form>
+    </div>
+    <script src="../login.js" type="module"></script>
+    <script src="../search.js" type="module"></script>
+    <script src="../account.js" type="module"></script>
+
+</body>
+
+</html>

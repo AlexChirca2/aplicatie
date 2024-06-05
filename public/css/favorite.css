@@ -1,0 +1,47 @@
+.favorite-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 10px;
+}
+
+.favorite-item img {
+    width: 180px;
+    height: auto;
+    margin-right: 20px;
+    border: 4px solid #000;
+}
+
+.favorite-item p {
+    margin: 0 10px;
+    font-size: 1.5em;
+    flex-grow: 1;
+    font-weight: bold;
+}
+
+.favorite-item button {
+    padding: 10px 20px;
+    margin-left: auto;
+    font-size: 1em;
+}
+
+
+
+.favorite-item-link {
+    text-decoration: none; /* elimină sublinierea linkului */
+    color: inherit; /* păstrează culoarea textului la fel ca în restul paginii */
+    display: flex;
+    align-items: center;
+}
+
+.favorite-item-link img {
+    width: 150px; /* sau orice altă dimensiune dorită */
+    height: auto; /* păstrează proporțiile imaginii */
+    margin-right: 20px; /* spațiu între imagine și text */
+}
+
+.favorite-item-link p {
+    margin: 0; /* elimină orice margin implicit */
+    font-size: 1.5em;
+    font-weight: bold;
+}

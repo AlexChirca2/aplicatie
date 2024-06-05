@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Dreams</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/cosul meu.css">
+</head>
+
+<body>
+    <div class="header">
+        <a href="../index.html" class="header-logo">
+            <img src="../img/Logo Site.jpg" alt="Logo Site" class="product-image-logo-site">
+        </a>
+        <form id="searchForm" autocomplete="off">
+            <input type="text" id="searchBar" placeholder="Caută produsul dorit">
+            <div id="autocomplete-results" style="display: none;"></div>
+        </form>
+        <button onclick="window.location.href= '/html/favorite.html';" id="favoritesButton">&#9733; Favorite</button>
+      <button onclick="window.location.href= '/html/cosul meu.html';" id="cartButton">&#128722; Coșul meu</button>
+        <div id="cartPanel" style="display: none;"></div>
+    </div>
+    <hr>
+    <div class="cart-container">
+        <div id="cart-items">
+
+        </div>
+        <div class="cart-summary">
+            <div class="summary-item">
+                <p>Subtotal:</p>
+                <p id="subtotal-price">0 lei</p>
+            </div>
+            <div class="summary-item">
+                <p>Total final:</p>
+                <p id="total-price">0 lei</p>
+            </div>
+            <button id="checkout-button">Continua</button>
+        </div>
+    </div>
+    <script src="../cosul meu.js" type="module"></script>
+    <script src="../search.js" type="module"></script>
+    <script src="../account.js" type="module"></script>
+
+</body>
+
+</html>

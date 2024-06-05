@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Dreams</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/product.css">
+</head>
+
+<body>
+    <div class="header">
+        <a href="../index.html" class="header-logo">
+            <img src="../img/Logo Site.jpg" alt="Logo Site" class="product-image-logo-site">
+        </a>
+        <form id="searchForm" autocomplete="off">
+            <input type="text" id="searchBar" placeholder="Caută produsul dorit">
+            <div id="autocomplete-results" style="display: none;"></div>
+        </form>
+        <button onclick="window.location.href= '/html/favorite.html';" id="favoritesButton">&#9733; Favorite</button>
+      <button onclick="window.location.href= '/html/cosul meu.html';" id="cartButton">&#128722; Coșul meu</button>
+        <div id="cartPanel" style="display: none;"></div>
+    </div>
+    <hr>
+    </div>
+    <div class="product-container">
+        <div class="product-image-container">
+            <img class="product-image" id="product-image" src="" alt="">
+        </div>
+        <div class="product-details" id="product-details">
+            <h1 id="product-name">Name</h1>
+            <div class="product-price" id="product-price"></div>
+            <div class="product-description">
+                <h3>Specificații: </h3>
+                <div class="specification-container" id="specification-container"> </div>
+                <div class="product-actions">
+                    <button class="add-to-cart-button" id="add-to-cart-button"">Adaugă în coș</button>
+                    <button class="add-to-favorites-button" id="add-to-favorites-button"">Adaugă în lista de
+                        favorite</button>
+                </div>
+                <div class="extra-warranty" id="extra-warranty">
+                    <h3>Adaugă extra garanție:</h3>
+                </div>
+
+            </div>
+            <script src="../page_builders/product.js" type = "module"></script>
+            <script src="../search.js" type="module"></script>
+         <script src="../account.js" type="module"></script>
+
+
+</body>
+
+</html>

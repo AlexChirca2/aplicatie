@@ -1,0 +1,59 @@
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px; /* spațiu între elementele din coș */
+}
+
+.cart-item img {
+    width: 180px; /* sau orice altă dimensiune dorită */
+    height: auto; /* păstrează proporțiile imaginii */
+    margin-right: 20px; /* spațiu între imagine și text */
+}
+
+.cart-item p {
+    margin: 0 10px; /* spațiu între paragrafe și în jurul lor */
+    font-size: 1.5em; /* mărimea textului */
+}
+
+.cart-item button {
+    padding: 10px 20px; /* mărimea butonului */
+    margin-left: auto; /* împinge butonul la dreapta */
+    font-size: 1em; /* mărimea textului din buton */
+}
+
+.quantity-input {
+    width: 30px; /* Sau orice altă lățime dorită */
+    margin-right: 0px; /* Adaugă un spațiu mic între câmp și butonul de ștergere, dacă este necesar */
+}
+
+
+
+/* Aici adăugăm stiluri pentru sumarul coșului */
+.cart-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-summary {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px; /* sau orice lățime se potrivește design-ului tău */
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#checkout-button {
+    background-color: #c00;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+/* Stilurile existente pentru .cart-item, .cart-item img, etc. rămân neschimbate */

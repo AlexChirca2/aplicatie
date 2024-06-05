@@ -1,0 +1,20 @@
+{
+  "name": "magazindeelectronice",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --env-file=.env app.js open",
+    "refresh": "node --env-file=.env app.js"
+  },
+  "type": "module",
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.2",
+    "mysql": "^2.18.1",
+    "open-cli": "^8.0.0"
+  }
+}
