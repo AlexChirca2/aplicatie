@@ -8,7 +8,7 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 
 import { exec } from "child_process";
-import mysql from "mysql";
+import { query } from "./sql_handler.js";
 
 //#endregion
 
@@ -74,90 +74,71 @@ function generateSession(currId = null) {
 }
 //#endregion
 
-//#region mySql Database
-
-// Create a connection to the database
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "1358",
-    database: "digital_dreams_db",
-});
-db.connect();
-
-//#endregion
-
 //#region Server Side Code
 const port = process.env.PORT;
 const app = express();
 const server = http.createServer(app);
 
+// Start the server
+server.listen(port, () => {
+    console.log(`Application started on port ${port}`);
+    console.log(`http://localhost:${port}\n`);
+    var args = process.argv.slice(2);
+    if (args[0] === "open") {
+        exec(`open-cli http://localhost:${port}`);
+    }
+});
+
 // Public folder to serve static files
 app.use(express.static("public"));
 app.use(cookieParser());
 
+//#endregion
+
+//#region API endpoints
+
 // API endpoint to get static files
-app.get("/", function (_, response) {
-    response.sendFile("./index.html", { root: __dirname });
+app.get("/", function (_, res) {
+    res.sendFile("./index.html", { root: __dirname });
 });
 
 // API endpoint to get categories
-app.get("/c/:name", function (req, response) {
-    db.query(
+app.get("/c/:name", async (req, res) => {
+    const results = await query(
         "SELECT * FROM digital_dreams_db.categories WHERE name = ?",
-        [req.params.name],
-        (err, results) => {
-            if (err) {
-                console.error("Error executing query:", err);
-                response.status(500).send("Server error");
-                return;
-            }
-            if (results.length === 0) {
-                response.status(404).send("Category not found");
-                return;
-            }
-
-            response.redirect(
-                `/html/category.html?id=${results[0].id}&name=${results[0].name}`
-            );
-        }
+        [req.params.name]
     );
+
+    if (results.length === 0) {
+        res.status(404).send("Category not found");
+    } else {
+        res.redirect(
+            `/html/category.html?id=${results[0].id}&name=${results[0].name}`
+        );
+    }
 });
 
 // API endpoint to get prdoucts
-app.get("/p/:id", function (req, response) {
-    db.query(
+app.get("/p/:id", async (req, res) => {
+    const results = await query(
         "SELECT * FROM digital_dreams_db.products WHERE id = ?",
-        [req.params.id],
-        (err, results) => {
-            if (err) {
-                console.error("Error executing query:", err);
-                response.status(500).send("Server error");
-                return;
-            }
-            if (results.length === 0) {
-                response.status(404).send("Product not found");
-                return;
-            }
-
-            response.redirect(
-                `/html/product.html?id=${results[0].id}&name=${results[0].name}&price=${results[0].price}&image=${results[0].image}&stock=${results[0].stock}`
-            );
-        }
+        [req.params.id]
     );
+
+    if (results.length === 0) {
+        res.status(404).send("Product not found");
+        return;
+    } else {
+        res.redirect(
+            `/html/product.html?id=${results[0].id}&name=${results[0].name}&price=${results[0].price}&image=${results[0].image}&stock=${results[0].stock}`
+        );
+    }
 });
 
 // API endpoint to get data from the database
-app.get("*/api/data", (req, res) => {
-    const query = req.query.query;
-    db.query(query, (err, results) => {
-        if (err) {
-            console.error("Error executing query:", err);
-            res.status(500).send("Server error");
-            return;
-        }
-        res.json(results);
-    });
+app.get("*/api/data", async (req, res) => {
+    const results = await query(req.query.query);
+    res.json(results);
 });
 
 // API endpoint to logout
@@ -173,138 +154,96 @@ app.get("/api/logout", (req, res) => {
 });
 
 // API endpoint to register
-app.get("/api/register", (req, res) => {
-    const username = req.query.username;
-    const password = req.query.password;
-
-    db.query(
+app.get("/api/register", async (req, res) => {
+    await query(
         "INSERT INTO `digital_dreams_db`.`users` (`username`, `password`, `sessions`,`favorites`,`cart`) VALUES (?, ?, '[]', '[]', '[]');",
-        [username, password],
-        (err, results) => {
-            if (err) {
-                console.error("Error executing query:", err);
-                res.status(500).send("Server error");
-                return;
-            }
-            if (session == null || session.id == null) {
-                session = getSession(req.headers.cookie);
-            }
-            session.username = username;
-            res.cookie("session", JSON.stringify(session));
-            res.cookie("cart", JSON.stringify([]));
-            res.cookie("favorites", JSON.stringify([]));
-            res.json({ username: username });
-        }
+        [req.query.username, req.query.password]
     );
+
+    if (session == null || session.id == null) {
+        session = getSession(req.headers.cookie);
+    }
+
+    session.username = username;
+    res.cookie("session", JSON.stringify(session));
+    res.cookie("cart", JSON.stringify([]));
+    res.cookie("favorites", JSON.stringify([]));
+    res.json({ username: username });
 });
 
 // API endpoint to login
-app.get("/api/login", (req, res) => {
-    const username = req.query.username;
-    const password = req.query.password;
-
-    db.query(
+app.get("/api/login", async (req, res) => {
+    const results = await query(
         "SELECT * FROM digital_dreams_db.users WHERE username = ? AND password = ?",
-        [username, password],
-        (err, results) => {
-            if (err) {
-                console.error("Error executing query:", err);
-                res.status(500).send("Server error");
-                return;
-            }
-            if (results.length === 0) {
-                res.status(401).send("Invalid username or password");
-                return;
-            }
-            if (session == null) {
-                session = getSession(req.headers.cookie);
-                res.cookie("session", JSON.stringify(session));
-            }
-
-            let sessions = JSON.parse(results[0].sessions);
-            if (sessions == null) {
-                sessions = [];
-            }
-            sessions.push(session);
-
-            db.query(
-                "UPDATE digital_dreams_db.users SET sessions = ? WHERE id = ?",
-                [JSON.stringify(sessions), results[0].id],
-                (err) => {
-                    if (err) {
-                        console.error("Error executing query:", err);
-                        res.status(500).send("Server error");
-                        return;
-                    }
-                }
-            );
-
-            console.log(results[0].cart);
-            console.log(results[0].favorites);
-
-            let parsedCart = JSON.parse(results[0].cart);
-            console.log(parsedCart);
-            if (parsedCart.length > 0) {
-                res.cookie("cart", results[0].cart);
-            } else {
-                let currentCart = getCookie(req.headers.cookie, "cart");
-                if (currentCart != null && currentCart.length > 0) {
-                    db.query(
-                        "UPDATE digital_dreams_db.users SET cart = ? WHERE username = ?",
-                        [JSON.stringify(currentCart), username],
-                        (err) => {
-                            if (err) {
-                                console.error("Error executing query:", err);
-                                res.status(500).send("Server error");
-                                return;
-                            }
-                        }
-                    );
-                }
-            }
-
-            let parsedFavorites = JSON.parse(results[0].favorites);
-            console.log(parsedFavorites);
-            if (parsedFavorites.length > 0) {
-                res.cookie("favorites", results[0].favorites);
-            } else {
-                let currentFavorites = getCookie(
-                    req.headers.cookie,
-                    "favorites"
-                );
-                if (currentFavorites != null && currentFavorites.length > 0) {
-                    db.query(
-                        "UPDATE digital_dreams_db.users SET favorites = ? WHERE username = ?",
-                        [JSON.stringify(currentFavorites), username],
-                        (err) => {
-                            if (err) {
-                                console.error("Error executing query:", err);
-                                res.status(500).send("Server error");
-                                return;
-                            }
-                        }
-                    );
-                }
-            }
-            if (session == null) {
-                session = getSession(req.headers.cookie);
-            }
-
-            session.username = username;
-
-            res.cookie("session", JSON.stringify(session));
-
-            res.json({
-                username: username,
-                cart: JSON.parse(results[0].cart),
-                favorites: JSON.parse(results[0].favorites),
-            });
-        }
+        [req.query.username, req.query.password]
     );
+
+    if (results.length === 0) {
+        res.status(401).send("Invalid username or password");
+        return;
+    }
+
+    if (session == null) {
+        session = getSession(req.headers.cookie);
+        res.cookie("session", JSON.stringify(session));
+    }
+
+    let sessions = JSON.parse(results[0].sessions);
+    if (sessions == null) {
+        sessions = [];
+    }
+
+    //session.username = username;????
+
+    sessions.push(session);
+
+    await query(
+        "UPDATE digital_dreams_db.users SET sessions = ? WHERE id = ?",
+        [JSON.stringify(sessions), results[0].id]
+    );
+
+    ///res.cookie("session", JSON.stringify(session)); ????
+
+    console.log(results[0].cart);
+    console.log(results[0].favorites);
+
+    let parsedCart = JSON.parse(results[0].cart);
+    console.log(parsedCart);
+    if (parsedCart.length > 0) {
+        res.cookie("cart", results[0].cart);
+    } else {
+        let currentCart = getCookie(req.headers.cookie, "cart");
+        if (currentCart != null && currentCart.length > 0) {
+            await query(
+                "UPDATE digital_dreams_db.users SET cart = ? WHERE username = ?",
+                [JSON.stringify(currentCart), username]
+            );
+        }
+    }
+
+    let parsedFavorites = JSON.parse(results[0].favorites);
+    console.log(parsedFavorites);
+    if (parsedFavorites.length > 0) {
+        res.cookie("favorites", results[0].favorites);
+    } else {
+        let currentFavorites = getCookie(req.headers.cookie, "favorites");
+        if (currentFavorites != null && currentFavorites.length > 0) {
+            await query(
+                "UPDATE digital_dreams_db.users SET favorites = ? WHERE username = ?",
+                [JSON.stringify(currentFavorites), username]
+            );
+        }
+    }
+
+    res.json({
+        username: username,
+        cart: JSON.parse(results[0].cart),
+        favorites: JSON.parse(results[0].favorites),
+    });
 });
 
 // API endpoint to update user data
-app.get("/api/updateUser", (req, res) => {
+app.get("/api/updateUser", async (req, res) => {
     if (session == null) {
         session = getSession(req.headers.cookie);
         res.cookie("session", JSON.stringify(session));
@@ -317,66 +256,43 @@ app.get("/api/updateUser", (req, res) => {
     let favorites = JSON.parse(req.query.favorites) || [];
     let cart = JSON.parse(req.query.cart) || [];
 
-    db.query(
+    await query(
         "UPDATE digital_dreams_db.users SET favorites = ?, cart = ? WHERE username = ?",
-        [JSON.stringify(favorites), JSON.stringify(cart), session.username],
-        (err) => {
-            if (err) {
-                console.error("Error executing query:", err);
-                res.status(500).send("Server error");
-                return;
-            }
-            res.json({ username: session.username });
-        }
+        [JSON.stringify(favorites), JSON.stringify(cart), session.username]
     );
+
+    res.json({ username: session.username });
 });
 
 // API endpoint to get session
 
-app.get("/api/autoLogin", (req, res) => {
+app.get("/api/autoLogin", async (req, res) => {
     if (session == null) {
         session = getSession(req.headers.cookie);
         res.cookie("session", JSON.stringify(session));
     }
 
     if (session.username != "guest") {
-        db.query(
+        const results = await query(
             "SELECT * FROM digital_dreams_db.users WHERE username = ?",
-            [session.username],
-            (err, results) => {
-                if (err) {
-                    console.error("Error executing query:", err);
-                    res.status(500).send("Server error");
-                    return;
-                }
-                if (results.length === 0) {
-                    res.status(404).send("User not found");
-                    return;
-                }
-
-                if (results[0].cart.length > 0) {
-                    res.cookie("cart", results[0].cart);
-                }
-
-                if (results[0].favorites.length > 0) {
-                    res.cookie("favorites", results[0].favorites);
-                }
-
-                res.json({ username: session.username });
-            }
+            [session.username]
         );
+
+        if (results.length === 0) {
+            res.status(404).send("User not found");
+        }
+
+        if (results[0].cart.length > 0) {
+            res.cookie("cart", results[0].cart);
+        }
+
+        if (results[0].favorites.length > 0) {
+            res.cookie("favorites", results[0].favorites);
+        }
+
+        res.json({ username: session.username });
     } else {
         res.json({ username: session.username });
-    }
-});
-
-// Start the server
-server.listen(port, () => {
-    console.log(`Application started on port ${port}`);
-    console.log(`http://localhost:${port}\n`);
-    var args = process.argv.slice(2);
-    if (args[0] === "open") {
-        exec(`open-cli http://localhost:${port}`);
     }
 });
 

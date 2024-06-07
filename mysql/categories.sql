@@ -1,4 +1,4 @@
-INSERT INTO `categories` (`name`,`image`) VALUES
+INSERT INTO `digital_dreams_db`.`categories` (`name`,`image`) VALUES
 ('Telefoane','./img/Telefon.jpg'),
 ('Accesorii','./img/Accesorii.jpg'),
 ('Tablete, Smartwatch-uri','./img/Tablete, Smartwatch-uri.jpg'),

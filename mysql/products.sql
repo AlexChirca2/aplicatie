@@ -1,4 +1,4 @@
-INSERT INTO `products` (`category_id`, `name`, `price`, `image`, `stock`) VALUES
+INSERT INTO `digital_dreams_db`.`products` (`category_id`, `name`, `price`, `image`, `stock`) VALUES
 (3, 'Tabletă Apple iPad Pro 11', 4999, './img/Tableta 1.jpg', 999),
 (3, 'Tabletă Apple iPad 10 (2022)', 1999, './img/Tableta 2.jpg', 999),
 (3, 'Tabletă Apple iPad 9 (2021)', 1899, './img/Tableta 3.jpg', 999),
