@@ -2,77 +2,19 @@
 
 import express from "express";
 import http from "http";
-import * as crypto from "crypto";
 import cookieParser from "cookie-parser";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
 import { exec } from "child_process";
 import { query } from "./sql_handler.js";
+import session from "./session.js";
 
 //#endregion
 
 // Directory path for this file
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
-//#region Session id
-let session = null;
-
-function getSession(cookies) {
-    let currentSession = getCookie(cookies, "session");
-
-    if (currentSession == null || currentSession.id == null) {
-        return generateSession();
-    } else if (currentSession.username === "guest") {
-        return currentSession;
-    } else {
-        // TODO: Implement session validation with async
-        // db.query(
-        //     "SELECT * FROM digital_dreams_db.users WHERE username = ?",
-        //     [currentSession.username],
-        //     (err, results) => {
-        //         if (err) {
-        //             console.error("Error executing query:", err);
-        //             return generateSession(currentSession.id);
-        //         }
-        //         if (results.length === 0) {
-        //             return generateSession(currentSession.id);
-        //         }
-
-        //         let sessions = JSON.parse(results[0].sessions);
-
-        //         if (sessions == null) {
-        //             return generateSession(currentSession.id);
-        //         }
-
-        //         let foundSession = sessions.find(
-        //             (s) => s.id === currentSession.id
-        //         );
-        //         if (foundSession == null) {
-        //             return generateSession(currentSession.id);
-        //         }
-
-        //         return currentSession;
-        //     }
-        // );
-
-        return currentSession;
-    }
-}
-
-function generateSession(currId = null) {
-    if (currId == null) {
-        currId = crypto.randomBytes(20).toString("hex");
-    }
-    const username = "guest";
-
-    return {
-        id: currId,
-        username: username,
-    };
-}
-//#endregion
 
 //#region Server Side Code
 const port = process.env.PORT;
@@ -141,172 +83,76 @@ app.get("*/api/data", async (req, res) => {
     res.json(results);
 });
 
-// API endpoint to logout
-app.get("/api/logout", (req, res) => {
-    if (session == null) {
-        session = getSession(req.headers.cookie);
-    }
-    session.username = "guest";
+// API endpoint to get session
+app.get("/api/autoLogin", async (req, res) => {
+    await session.load(req);
     res.cookie("session", JSON.stringify(session));
-    res.cookie("cart", JSON.stringify([]));
-    res.cookie("favorites", JSON.stringify([]));
-    res.send("");
+    res.end();
+});
+
+// API endpoint to logout
+app.get("/api/logout", (_, res) => {
+    session.clear();
+    res.cookie("session", JSON.stringify(session));
+    res.end();
 });
 
 // API endpoint to register
 app.get("/api/register", async (req, res) => {
-    await query(
-        "INSERT INTO `digital_dreams_db`.`users` (`username`, `password`, `sessions`,`favorites`,`cart`) VALUES (?, ?, '[]', '[]', '[]');",
-        [req.query.username, req.query.password]
-    );
-
-    if (session == null || session.id == null) {
-        session = getSession(req.headers.cookie);
+    if (req.query.username == "guest") {
+        res.status(400).send("User cannot be guest!");
+        return;
     }
 
-    session.username = username;
+    await session.load(req);
+
+    const userData = await query(
+        "SELECT * FROM digital_dreams_db.users WHERE username = ?",
+        [req.query.username]
+    );
+
+    if (userData != null && userData[0] != null) {
+        res.status(400).send("User already exists!");
+        return;
+    }
+
+    await query(
+        "INSERT INTO `digital_dreams_db`.`users` (`username`, `password`, `sessions`,`favorites`,`cart`) VALUES (?, ?, ?, '[]', '[]');",
+        [req.query.username, req.query.password, JSON.stringify([session.id])]
+    );
+
+    await session.connect({ username: req.query.username }, true);
     res.cookie("session", JSON.stringify(session));
-    res.cookie("cart", JSON.stringify([]));
-    res.cookie("favorites", JSON.stringify([]));
-    res.json({ username: username });
+    res.end();
 });
 
 // API endpoint to login
 app.get("/api/login", async (req, res) => {
+    await session.load(req);
+
     const results = await query(
         "SELECT * FROM digital_dreams_db.users WHERE username = ? AND password = ?",
         [req.query.username, req.query.password]
     );
 
     if (results.length === 0) {
-        res.status(401).send("Invalid username or password");
+        res.status(400).send("Invalid username or password");
         return;
     }
 
-    if (session == null) {
-        session = getSession(req.headers.cookie);
-        res.cookie("session", JSON.stringify(session));
-    }
-
-    let sessions = JSON.parse(results[0].sessions);
-    if (sessions == null) {
-        sessions = [];
-    }
-
-    //session.username = username;????
-
-    sessions.push(session);
-
-    await query(
-        "UPDATE digital_dreams_db.users SET sessions = ? WHERE id = ?",
-        [JSON.stringify(sessions), results[0].id]
-    );
-
-    ///res.cookie("session", JSON.stringify(session)); ????
-
-    console.log(results[0].cart);
-    console.log(results[0].favorites);
-
-    let parsedCart = JSON.parse(results[0].cart);
-    console.log(parsedCart);
-    if (parsedCart.length > 0) {
-        res.cookie("cart", results[0].cart);
-    } else {
-        let currentCart = getCookie(req.headers.cookie, "cart");
-        if (currentCart != null && currentCart.length > 0) {
-            await query(
-                "UPDATE digital_dreams_db.users SET cart = ? WHERE username = ?",
-                [JSON.stringify(currentCart), username]
-            );
-        }
-    }
-
-    let parsedFavorites = JSON.parse(results[0].favorites);
-    console.log(parsedFavorites);
-    if (parsedFavorites.length > 0) {
-        res.cookie("favorites", results[0].favorites);
-    } else {
-        let currentFavorites = getCookie(req.headers.cookie, "favorites");
-        if (currentFavorites != null && currentFavorites.length > 0) {
-            await query(
-                "UPDATE digital_dreams_db.users SET favorites = ? WHERE username = ?",
-                [JSON.stringify(currentFavorites), username]
-            );
-        }
-    }
-
-    res.json({
-        username: username,
-        cart: JSON.parse(results[0].cart),
-        favorites: JSON.parse(results[0].favorites),
-    });
+    await session.connect(results[0]);
+    res.cookie("session", JSON.stringify(session));
+    res.end();
 });
 
 // API endpoint to update user data
 app.get("/api/updateUser", async (req, res) => {
-    if (session == null) {
-        session = getSession(req.headers.cookie);
-        res.cookie("session", JSON.stringify(session));
-    }
+    await session.load(req);
 
-    if (session.username === "guest") {
-        return;
-    }
+    session.update({ favorites: req.query.favorites, cart: req.query.cart });
 
-    let favorites = JSON.parse(req.query.favorites) || [];
-    let cart = JSON.parse(req.query.cart) || [];
-
-    await query(
-        "UPDATE digital_dreams_db.users SET favorites = ?, cart = ? WHERE username = ?",
-        [JSON.stringify(favorites), JSON.stringify(cart), session.username]
-    );
-
-    res.json({ username: session.username });
+    res.cookie("session", JSON.stringify(session));
+    res.end();
 });
 
-// API endpoint to get session
-
-app.get("/api/autoLogin", async (req, res) => {
-    if (session == null) {
-        session = getSession(req.headers.cookie);
-        res.cookie("session", JSON.stringify(session));
-    }
-
-    if (session.username != "guest") {
-        const results = await query(
-            "SELECT * FROM digital_dreams_db.users WHERE username = ?",
-            [session.username]
-        );
-
-        if (results.length === 0) {
-            res.status(404).send("User not found");
-        }
-
-        if (results[0].cart.length > 0) {
-            res.cookie("cart", results[0].cart);
-        }
-
-        if (results[0].favorites.length > 0) {
-            res.cookie("favorites", results[0].favorites);
-        }
-
-        res.json({ username: session.username });
-    } else {
-        res.json({ username: session.username });
-    }
-});
-
-//#endregion
-
-//#region Cookies
-
-function getCookie(cookies, key) {
-    let allCookies = decodeURIComponent(cookies).split(";");
-    let cookie = allCookies.find((c) => c.includes(`${key}=`));
-    if (cookie == null) return null;
-
-    let json = cookie.replace(`${key}=`, "");
-
-    return JSON.parse(json);
-}
 //#endregion

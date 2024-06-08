@@ -78,7 +78,6 @@ function addProduct(parent, product) {
 
 function addToCart(productId) {
     let cart = getCookie("cart") || [];
-    console.log(cart);
     let cartProduct = cart.find((cartProduct) => cartProduct.id === productId);
     if (cartProduct != null) {
         cartProduct.quantity++;

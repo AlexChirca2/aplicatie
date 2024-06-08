@@ -1,3 +1,5 @@
+import { getCookie } from "./cookie_parser.js";
+
 async function fetchSQLData(query) {
     const encodedQuery = encodeURIComponent(query);
 
@@ -8,54 +10,50 @@ async function fetchSQLData(query) {
         .then((data) => {
             return data;
         })
-        .catch((error) => console.error("Error fetching data:", query));
+        .catch((error) => console.error("Error fetching data:", query, error));
 }
 
-function logout() {
-    fetch(`/api/logout`, {
+async function logout() {
+    await fetch(`/api/logout`, {
         credentials: "include",
     });
 }
 
 async function register(username, password) {
-    return await fetch(
-        `/api/register?username=${username}&password=${password}`,
-        {
+    try {
+        await fetch(`/api/register?username=${username}&password=${password}`, {
             credentials: "include",
-        }
-    )
-        .then((response) => response.json())
-        .then((data) => data)
-        .catch((error) => console.error("Error registering:", error));
+        });
+        return null;
+    } catch (e) {
+        return e.message;
+    }
 }
 
 async function login(username, password) {
-    return await fetch(`/api/login?username=${username}&password=${password}`, {
-        credentials: "include",
-    })
-        .then((response) => response.json())
-        .then((data) => data)
-        .catch((_) => {
-            return null;
+    try {
+        await fetch(`/api/login?username=${username}&password=${password}`, {
+            credentials: "include",
         });
+    } catch (e) {
+        return e.message;
+    }
 }
 
 async function updateUser(cart, favorites) {
-    return await fetch(`/api/updateUser?cart=${cart}&favorites=${favorites}`, {
-        credentials: "include",
-    })
-        .then((response) => response.json())
-        .then((data) => data)
-        .catch((error) => console.error("Error updating user:", error));
+    try {
+        await fetch(`/api/updateUser?cart=${cart}&favorites=${favorites}`, {
+            credentials: "include",
+        });
+    } catch (e) {
+        return e.message;
+    }
 }
 
 async function autoLogin() {
-    return await fetch(`/api/autoLogin`, {
+    await fetch(`/api/autoLogin`, {
         credentials: "include",
-    })
-        .then((response) => response.json())
-        .then((data) => data)
-        .catch((error) => console.error("Error auto logging in:", error));
+    });
 }
 
 export { fetchSQLData, logout, register, login, updateUser, autoLogin };

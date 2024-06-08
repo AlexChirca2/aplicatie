@@ -1,12 +1,14 @@
-import { saveCookie } from "./cookie_parser.js";
+import { getCookie, saveCookie } from "./cookie_parser.js";
 import { autoLogin, logout } from "./server.js";
 
 initialize();
 
 async function initialize() {
-    var user = await autoLogin();
+    await autoLogin();
 
-    if (user != null && user.username != "guest") {
+    const session = getCookie("session");
+
+    if (session.user.username != "guest") {
         createUserConnectedUI();
     } else {
         createUserNotConnectedUI();
