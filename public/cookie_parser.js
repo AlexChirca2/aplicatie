@@ -1,8 +1,3 @@
-function saveCookie(key, value) {
-    let parsedValue = JSON.stringify(value);
-    document.cookie = `${key}=${parsedValue}`;
-}
-
 function getCookie(key) {
     let allCookies = decodeURIComponent(document.cookie).split(";");
     let cookie = allCookies.find((c) => c.includes(`${key}=`));
@@ -14,4 +9,4 @@ function getCookie(key) {
     return JSON.parse(json);
 }
 
-export { saveCookie, getCookie };
+export { getCookie };

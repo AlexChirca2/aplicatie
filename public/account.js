@@ -1,4 +1,4 @@
-import { getCookie, saveCookie } from "./cookie_parser.js";
+import { getCookie } from "./cookie_parser.js";
 import { autoLogin, logout } from "./server.js";
 
 initialize();
@@ -9,27 +9,30 @@ async function initialize() {
     const session = getCookie("session");
 
     if (session.user.username != "guest") {
-        createUserConnectedUI();
+        createUserConnectedUI(session.user.username);
     } else {
         createUserNotConnectedUI();
     }
 }
 
-function createUserConnectedUI() {
+function createUserConnectedUI(username) {
     var sibling = document.getElementById("cartButton");
+
+    let usernameText = document.createElement("div");
+    usernameText.id = "usernameText";
+    usernameText.innerHTML = `<strong>${username}</strong>`;
 
     let logoutButton = document.createElement("button");
     logoutButton.id = "logoutButton";
     logoutButton.textContent = "Logout";
-    logoutButton.onclick = function () {
-        logout();
+    logoutButton.onclick = async function () {
+        await logout();
         logoutButton.remove();
         createUserNotConnectedUI();
-        saveCookie("cart", []);
-        saveCookie("favorites", []);
     };
 
-    sibling.insertAdjacentElement("afterend", logoutButton);
+    sibling.insertAdjacentElement("afterend", usernameText);
+    usernameText.insertAdjacentElement("afterend", logoutButton);
 }
 
 function createUserNotConnectedUI() {

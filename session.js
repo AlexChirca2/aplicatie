@@ -17,7 +17,6 @@ class Session {
     };
 
     clear() {
-        this.id = crypto.randomBytes(20).toString("hex");
         this.user = {
             username: "guest",
             favorites: [],

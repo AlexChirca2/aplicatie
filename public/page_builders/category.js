@@ -1,5 +1,5 @@
 import { fetchSQLData, updateUser } from "../server.js";
-import { getCookie, saveCookie } from "../cookie_parser.js";
+import { getCookie } from "../cookie_parser.js";
 const imgFolder = "../img";
 
 initialize();
@@ -77,25 +77,23 @@ function addProduct(parent, product) {
 }
 
 function addToCart(productId) {
-    let cart = getCookie("cart") || [];
-    let cartProduct = cart.find((cartProduct) => cartProduct.id === productId);
+    const cart = getCookie("session").cart;
+    const cartProduct = cart.find(
+        (cartProduct) => cartProduct.id === productId
+    );
     if (cartProduct != null) {
         cartProduct.quantity++;
     } else {
         cart.push({ id: productId, quantity: 1 });
     }
 
-    saveCookie("cart", cart);
-    let favorites = getCookie("favorites") || [];
-    updateUser(JSON.stringify(cart), JSON.stringify(favorites));
+    updateUser({ cart: JSON.stringify(cart) });
 }
 
 function addToFavorites(productId) {
-    let favorites = getCookie("favorites") || [];
+    const favorites = getCookie("session").favorites;
     if (favorites.includes(productId)) return;
     favorites.push(productId);
 
-    saveCookie("favorites", favorites);
-    let cart = getCookie("cart") || [];
-    updateUser(JSON.stringify(cart), JSON.stringify(favorites));
+    updateUser({ favorites: JSON.stringify(favorites) });
 }

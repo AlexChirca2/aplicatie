@@ -1,11 +1,11 @@
-import { getCookie, saveCookie } from "./cookie_parser.js";
+import { getCookie } from "./cookie_parser.js";
 import { fetchSQLData, updateUser } from "./server.js";
 
 const imgFolder = "../img";
 
 document.addEventListener("DOMContentLoaded", async function () {
     const favoriteItemsContainer = document.getElementById("favorite-items");
-    const favorites = getCookie("favorites") || [];
+    const favorites = getCookie("session").favorites;
 
     if (favorites.length > 0) {
         let queryString = "(";
@@ -38,16 +38,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             let button = document.createElement("button");
             button.textContent = "Șterge";
-            button.onclick = function () {
+            button.onclick = async function () {
                 favorites.splice(
                     favorites.findIndex((productId) => productId == product.id),
                     1
                 );
 
-                saveCookie("favorites", favorites);
-                let cart = getCookie("cart") || [];
-                updateUser(JSON.stringify(cart), JSON.stringify(favorites));
-
+                await updateUser({ favorites: JSON.stringify(favorites) });
                 productElement.remove();
             };
             productElement.appendChild(button);

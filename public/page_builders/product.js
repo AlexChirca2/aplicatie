@@ -1,5 +1,5 @@
 import { fetchSQLData, updateUser } from "../server.js";
-import { getCookie, saveCookie } from "../cookie_parser.js";
+import { getCookie } from "../cookie_parser.js";
 
 const imgFolder = "../img";
 
@@ -128,25 +128,23 @@ function createWarranty(parent, duration, price) {
 }
 
 function addToCart() {
-    let cart = getCookie("cart") || [];
-    let cartProduct = cart.find((cartProduct) => cartProduct.id === product.id);
+    const cart = getCookie("session").cart;
+    const cartProduct = cart.find(
+        (cartProduct) => cartProduct.id === product.id
+    );
     if (cartProduct != null) {
         cartProduct.quantity++;
     } else {
         cart.push({ id: product.id, quantity: 1 });
     }
 
-    saveCookie("cart", cart);
-    let favorites = getCookie("favorites") || [];
-    updateUser(JSON.stringify(cart), JSON.stringify(favorites));
+    updateUser({ cart: JSON.stringify(cart) });
 }
 
 function addToFavorites() {
-    let favorites = getCookie("favorites") || [];
+    const favorites = getCookie("session").favorites;
     if (favorites.includes(product.id)) return;
     favorites.push(product.id);
 
-    saveCookie("favorites", favorites);
-    let cart = getCookie("cart") || [];
-    updateUser(JSON.stringify(cart), JSON.stringify(favorites));
+    updateUser({ favorites: JSON.stringify(favorites) });
 }

@@ -129,6 +129,10 @@ hr {
     margin-left: 10px;
 }
 
+#usernameText{
+    margin-left: 10px;
+}
+
 a, a:visited {
     color: #000000;
 }

@@ -52,12 +52,14 @@ app.get("/c/:name", async (req, res) => {
     );
 
     if (results.length === 0) {
-        res.status(404).send("Category not found");
-    } else {
-        res.redirect(
-            `/html/category.html?id=${results[0].id}&name=${results[0].name}`
-        );
+        res.status(404).json({ message: "Category not found" });
+        res.end();
+        return;
     }
+
+    res.redirect(
+        `/html/category.html?id=${results[0].id}&name=${results[0].name}`
+    );
 });
 
 // API endpoint to get prdoucts
@@ -68,13 +70,14 @@ app.get("/p/:id", async (req, res) => {
     );
 
     if (results.length === 0) {
-        res.status(404).send("Product not found");
+        res.status(404).json({ message: "Product not found" });
+        res.end();
         return;
-    } else {
-        res.redirect(
-            `/html/product.html?id=${results[0].id}&name=${results[0].name}&price=${results[0].price}&image=${results[0].image}&stock=${results[0].stock}`
-        );
     }
+
+    res.redirect(
+        `/html/product.html?id=${results[0].id}&name=${results[0].name}&price=${results[0].price}&image=${results[0].image}&stock=${results[0].stock}`
+    );
 });
 
 // API endpoint to get data from the database
@@ -100,7 +103,8 @@ app.get("/api/logout", (_, res) => {
 // API endpoint to register
 app.get("/api/register", async (req, res) => {
     if (req.query.username == "guest") {
-        res.status(400).send("User cannot be guest!");
+        res.status(400).json({ message: "User cannot be guest!" });
+        res.end();
         return;
     }
 
@@ -112,7 +116,8 @@ app.get("/api/register", async (req, res) => {
     );
 
     if (userData != null && userData[0] != null) {
-        res.status(400).send("User already exists!");
+        res.status(400).json({ message: "User already exists!" });
+        res.end();
         return;
     }
 
@@ -136,7 +141,8 @@ app.get("/api/login", async (req, res) => {
     );
 
     if (results.length === 0) {
-        res.status(400).send("Invalid username or password");
+        res.status(400).json({ message: "Invalid username or password!" });
+        res.end();
         return;
     }
 

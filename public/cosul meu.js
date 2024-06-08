@@ -1,11 +1,11 @@
-import { getCookie, saveCookie } from "./cookie_parser.js";
+import { getCookie } from "./cookie_parser.js";
 import { fetchSQLData, updateUser } from "./server.js";
 
 const imgFolder = "../img";
 
 document.addEventListener("DOMContentLoaded", async function () {
     const cartItemsContainer = document.getElementById("cart-items");
-    const cart = getCookie("cart") || [];
+    const cart = getCookie("session").cart;
 
     if (cart.length > 0) {
         let queryString = "(";
@@ -50,17 +50,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             let button = document.createElement("button");
             button.textContent = "Șterge";
-            button.onclick = function () {
+            button.onclick = async function () {
                 cart.splice(
                     cart.findIndex(
                         (cartProduct) => cartProduct.id == product.id
                     ),
                     1
                 );
-                saveCookie("cart", cart);
-                let favorites = getCookie("favorites") || [];
-                updateUser(JSON.stringify(cart), JSON.stringify(favorites));
-
+                await updateUser({ cart: JSON.stringify(cart) });
                 productElement.remove();
             };
             productElement.appendChild(button);
@@ -77,9 +74,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             cart.find((cartProduct) => cartProduct.id == productId).quantity =
                 newQuantity;
-            saveCookie("cart", cart);
-            let favorites = getCookie("favorites") || [];
-            updateUser(JSON.stringify(cart), JSON.stringify(favorites));
+            updateUser({ cart: JSON.stringify(cart) });
         }
     });
 });
