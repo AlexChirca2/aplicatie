@@ -70,7 +70,7 @@
 .add-to-cart-button, .add-to-favorite-button {
     align-self: center;
     width: 90%;
-    max-width: 200px;
+    transform: translate(5%,0%);
 }
 
 .price {
@@ -79,6 +79,7 @@
     color: red;
     margin-top: 5px;
     margin-bottom: 5px;
+    margin-left: 40%;
 }
 
 .sidebar {
