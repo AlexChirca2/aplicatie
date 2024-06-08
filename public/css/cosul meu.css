@@ -17,13 +17,22 @@
 
 .cart-item button {
     padding: 10px 20px; /* mărimea butonului */
-    margin-left: auto; /* împinge butonul la dreapta */
     font-size: 1em; /* mărimea textului din buton */
 }
 
 .quantity-input {
     width: 30px; /* Sau orice altă lățime dorită */
     margin-right: 0px; /* Adaugă un spațiu mic între câmp și butonul de ștergere, dacă este necesar */
+}
+
+.product-price{
+    font-size: 1.3em;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.price-parent{
+    margin-left: auto;
 }
 
 

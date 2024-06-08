@@ -2,6 +2,15 @@ import { getCookie } from "./cookie_parser.js";
 import { fetchSQLData, updateUser } from "./server.js";
 
 const imgFolder = "../img";
+var totalValue = 0;
+
+function updatePrice() {
+    let subPrice = document.getElementById("subtotal-price");
+    let totalPrice = document.getElementById("total-price");
+
+    subPrice.textContent = totalValue + " lei";
+    totalPrice.textContent = totalValue + " lei";
+}
 
 document.addEventListener("DOMContentLoaded", async function () {
     const cartItemsContainer = document.getElementById("cart-items");
@@ -25,6 +34,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                 (cartProduct) => cartProduct.id == product.id
             ).quantity;
 
+            totalValue += product.price * quantity;
+
             const imgPath = imgFolder + product.image.split("img").pop();
 
             productElement.className = "cart-item";
@@ -40,13 +51,34 @@ document.addEventListener("DOMContentLoaded", async function () {
             p.textContent = product.name;
             productElement.appendChild(p);
 
+            let price = document.createElement("div");
+            price.className = "product-price";
+            price.innerHTML = product.price * quantity + " lei";
+
             let input = document.createElement("input");
             input.type = "number";
             input.value = quantity;
             input.min = 1;
             input.className = "quantity-input";
             input.dataset.productId = product.id;
+
+            input.onchange = async function () {
+                const cartProduct = cart.find(
+                    (cartProduct) => cartProduct.id == product.id
+                );
+                const diff = input.value - cartProduct.quantity;
+                cartProduct.quantity = input.value;
+                price.innerHTML = product.price * input.value + " lei";
+
+                await updateUser({ cart: JSON.stringify(cart) });
+                totalValue += diff * product.price;
+                updatePrice();
+            };
+
             productElement.appendChild(input);
+
+            const rightParent = document.createElement("div");
+            rightParent.className = "price-parent";
 
             let button = document.createElement("button");
             button.textContent = "Șterge";
@@ -58,23 +90,19 @@ document.addEventListener("DOMContentLoaded", async function () {
                     1
                 );
                 await updateUser({ cart: JSON.stringify(cart) });
+                totalValue -= input.value * product.price;
+                updatePrice();
                 productElement.remove();
             };
-            productElement.appendChild(button);
+
+            rightParent.appendChild(price);
+            rightParent.appendChild(button);
+
+            productElement.appendChild(rightParent);
 
             cartItemsContainer.appendChild(productElement);
         });
+
+        updatePrice();
     }
-
-    // Adaugă listener pe schimbarea cantității
-    cartItemsContainer.addEventListener("change", function (event) {
-        if (event.target.classList.contains("quantity-input")) {
-            const newQuantity = event.target.value;
-            const productId = event.target.dataset.productId;
-
-            cart.find((cartProduct) => cartProduct.id == productId).quantity =
-                newQuantity;
-            updateUser({ cart: JSON.stringify(cart) });
-        }
-    });
 });
