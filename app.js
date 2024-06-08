@@ -154,8 +154,10 @@ app.get("/api/login", async (req, res) => {
 // API endpoint to update user data
 app.get("/api/updateUser", async (req, res) => {
     await session.load(req);
-
-    session.update({ favorites: req.query.favorites, cart: req.query.cart });
+    await session.update({
+        favorites: req.query.favorites,
+        cart: req.query.cart,
+    });
 
     res.cookie("session", JSON.stringify(session));
     res.end();

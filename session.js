@@ -1,13 +1,6 @@
 import * as crypto from "crypto";
 import { query } from "./sql_handler.js";
 
-// interface User {
-//     username:string;
-//     sessions:string[];
-//     favorites:string[];
-//     cart:string[];
-// }
-
 class Session {
     id = crypto.randomBytes(20).toString("hex");
     user = {
@@ -76,7 +69,7 @@ class Session {
         //update session
         this.id = cookieSession.id;
         this.user = {
-            username: cookieSession.username,
+            username: cookieSession.user.username,
             favorites: JSON.parse(dataUser.favorites),
             cart: JSON.parse(dataUser.cart),
         };
