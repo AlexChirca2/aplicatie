@@ -33,6 +33,17 @@ class Session {
             return;
         }
 
+        // wrong cookies
+        if (
+            cookieSession.id == null ||
+            cookieSession.user == null ||
+            cookieSession.user.username == null ||
+            cookieSession.user.favorites == null ||
+            cookieSession.user.cart == null
+        ) {
+            return;
+        }
+
         // guest cookie session
         if (cookieSession.user.username == "guest") {
             this.id = cookieSession.id;
