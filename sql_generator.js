@@ -10,7 +10,7 @@ const mySqlGenerationOrder = [
     "./mysql/products.sql",
     "./mysql/specifications.sql",
     "./mysql/extra_warranty.sql",
-    // './mysql/options.sql',
+    "./mysql/options.sql",
 ];
 
 async function generateDB() {

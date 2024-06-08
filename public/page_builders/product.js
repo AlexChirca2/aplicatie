@@ -11,6 +11,12 @@ async function initialize() {
     addProductName(product.name);
     addProductData(product.price, product.stock);
 
+    const options = await fetchSQLData(
+        `SELECT * FROM digital_dreams_db.product_options WHERE product_id = ${product.id};`
+    );
+
+    addOptions(options);
+
     const specs = await fetchSQLData(
         `SELECT * FROM digital_dreams_db.specifications WHERE product_id = ${product.id};`
     );
@@ -65,6 +71,7 @@ function addProductData(price, stock) {
     let parent = document.getElementById("product-price");
 
     let priceElement = document.createElement("span");
+    priceElement.id = "product-price-element";
     priceElement.className = "price";
     priceElement.innerHTML = `${price} lei`;
     parent.appendChild(priceElement);
@@ -81,6 +88,56 @@ function addProductData(price, stock) {
 
         parent.appendChild(deliveryElement);
     }
+}
+
+function addOptions(options) {
+    const optionContainer = document.getElementById("product-options");
+
+    options.forEach((option) => {
+        createOption(optionContainer, option.type, JSON.parse(option.data));
+    });
+}
+
+function createOption(parent, name, data) {
+    const productImage = document.getElementById("product-image");
+    const priceElement = document.getElementById("product-price-element");
+
+    const parsedName = name.toLowerCase().replace(":", "").replace(" ", "-");
+
+    const label = document.createElement("label");
+    label.for = parsedName;
+    label.textContent = name;
+
+    parent.appendChild(label);
+
+    const select = document.createElement("select");
+    select.id = parsedName;
+    if (isNumber(data.values[0].value)) {
+        //price
+        select.onchange = (e) => {
+            priceElement.innerHTML = `${e.target.value} lei`;
+        };
+    } else {
+        //image
+        select.onchange = (e) => {
+            const imgPath = imgFolder + e.target.value.split("img").pop();
+            productImage.src = imgPath;
+        };
+    }
+
+    for (var i = 0; i < data.values.length; ++i) {
+        const op = document.createElement("option");
+        op.value = data.values[i].value;
+        op.textContent = data.values[i].name;
+
+        if (i == data.default) {
+            op.selected = true;
+        }
+
+        select.appendChild(op);
+    }
+
+    parent.appendChild(select);
 }
 
 function addSpecifications(specs) {
@@ -147,4 +204,8 @@ function addToFavorites() {
     favorites.push(product.id);
 
     updateUser({ favorites: JSON.stringify(favorites) });
+}
+
+function isNumber(value) {
+    return typeof value === "number" && !isNaN(value);
 }

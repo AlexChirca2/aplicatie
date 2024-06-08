@@ -1,7 +1,7 @@
 INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`) VALUES
 
 -- Laptop Apple MacBook Pro (2021)
-(1, "Culoare", '{
+(161, "Culoare", '{
     "values": [
         {
             "name": "Argintiu",
@@ -14,7 +14,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(161, "Capacitate stocare", '{
     "values": [
         {
             "name": "512 GB",
@@ -33,7 +33,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Laptop Lenovo Thinkpad T14s Gen 4
-(1, "Capacitate stocare", '{
+(167, "Capacitate stocare", '{
     "values": [
         {
             "name": "512 GB SSD / 16 GB RAM",
@@ -56,7 +56,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Laptop Lenovo Thinkpad T14s Gen 3
-(1, "Capacitate stocare", '{
+(168, "Capacitate stocare", '{
     "values": [
         {
             "name": "512 GB SSD / 16 GB RAM",
@@ -79,7 +79,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Laptop Lenovo IdeaPad 5 Pro
-(1, "Capacitate stocare", '{
+(169, "Capacitate stocare", '{
     "values": [
         {
             "name": "512 GB SSD / 16 GB RAM",
@@ -102,7 +102,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Laptop Lenovo Thinkpad L15 Gen 4
-(1, "Capacitate stocare", '{
+(170, "Capacitate stocare", '{
     "values": [
         {
             "name": "512 GB SSD / 16 GB RAM",
@@ -125,7 +125,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Laptop Lenovo Thinkbook 15 G2
-(1, "Capacitate stocare", '{
+(171, "Capacitate stocare", '{
     "values": [
         {
             "name": "512 GB",
@@ -140,7 +140,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Laptop Lenovo IdeaPad 5
-(1, "Capacitate stocare", '{
+(172, "Capacitate stocare", '{
     "values": [
         {
             "name": "512 GB",
@@ -155,7 +155,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Laptop Gaming HP Victus
-(1, "Capacitate stocare", '{
+(173, "Capacitate stocare", '{
     "values": [
         {
             "name": "GTX 1650 / 8 GB RAM",
@@ -178,7 +178,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Laptop Office HP 250 G8
-(1, "Capacitate stocare", '{
+(174, "Capacitate stocare", '{
     "values": [
         {
             "name": "512 GB",
@@ -197,7 +197,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Laptop Gaming ASUS TUF A15
-(1, "Capacitate stocare", '{
+(175, "Capacitate stocare", '{
     "values": [
         {
             "name": "Ryzen 7 / 16 GB RAM",
@@ -220,7 +220,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Laptop ASUS Vivobook 15
-(1, "Capacitate stocare", '{
+(176, "Capacitate stocare", '{
     "values": [
         {
             "name": "i5 / 8 GB RAM",
@@ -243,7 +243,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Laptop Dell Vostro 3520
-(1, "Capacitate stocare", '{
+(177, "Capacitate stocare", '{
     "values": [
         {
             "name": "i5 / 8 GB RAM",
@@ -266,7 +266,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Laptop Gaming Dell Inspiron G15
-(1, "Capacitate stocare", '{
+(178, "Capacitate stocare", '{
     "values": [
         {
             "name": "i7 / 16 GB RAM",
@@ -289,7 +289,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Laptop Gaming Acer Predator Helios 16
-(1, "Capacitate stocare", '{
+(179, "Capacitate stocare", '{
     "values": [
         {
             "name": "13900HX / 16 GB RAM",
@@ -312,7 +312,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Apple Watch Ultra 2
-(1, "Culoare", '{
+(13, "Culoare", '{
     "values": [
         {
             "name": "Alb",
@@ -327,7 +327,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Apple Watch Series 9
-(1, "Culoare", '{
+(14, "Culoare", '{
     "values": [
         {
             "name": "Alb",
@@ -342,7 +342,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Apple Watch Series 8
-(1, "Culoare", '{
+(15, "Culoare", '{
     "values": [
         {
             "name": "Alb",
@@ -357,7 +357,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Apple Watch SE
-(1, "Culoare", '{
+(16, "Culoare", '{
     "values": [
         {
             "name": "Albastru",
@@ -372,7 +372,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Samsung Watch 5 Pro
-(1, "Culoare", '{
+(17, "Culoare", '{
     "values": [
         {
             "name": "Gri",
@@ -387,7 +387,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Samsung Watch 3
-(1, "Culoare", '{
+(18, "Culoare", '{
     "values": [
         {
             "name": "Bej",
@@ -402,7 +402,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Xiaomi Watch S3
-(1, "Culoare", '{
+(19, "Culoare", '{
     "values": [
         {
             "name": "Argintiu",
@@ -417,7 +417,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Huawei Watch GT3
-(1, "Culoare", '{
+(20, "Culoare", '{
     "values": [
         {
             "name": "Alb",
@@ -472,7 +472,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Tabletă Apple iPad 10
-(1, "Culoare", '{
+(2, "Culoare", '{
     "values": [
         {
             "name": "Argintiu",
@@ -485,7 +485,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(2, "Capacitate stocare", '{
     "values": [
         {
             "name": "64 GB",
@@ -500,7 +500,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Tabletă Apple iPad 9
-(1, "Culoare", '{
+(3, "Culoare", '{
     "values": [
         {
             "name": "Argintiu",
@@ -513,7 +513,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(3, "Capacitate stocare", '{
     "values": [
         {
             "name": "64 GB",
@@ -528,7 +528,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Tabletă Apple iPad Air 5
-(1, "Culoare", '{
+(4, "Culoare", '{
     "values": [
         {
             "name": "Violet",
@@ -541,7 +541,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(4, "Capacitate stocare", '{
     "values": [
         {
             "name": "64 GB",
@@ -556,7 +556,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Tabletă Samsung Tab S9 Ultra
-(1, "Culoare", '{
+(5, "Culoare", '{
     "values": [
         {
             "name": "Bej",
@@ -569,7 +569,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(5, "Capacitate stocare", '{
     "values": [
         {
             "name": "256 GB",
@@ -588,7 +588,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Tabletă Samsung Tab S8 Ultra
-(1, "Culoare", '{
+(6, "Culoare", '{
     "values": [
         {
             "name": "Bej",
@@ -601,7 +601,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(6, "Capacitate stocare", '{
     "values": [
         {
             "name": "128 GB",
@@ -620,7 +620,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Tabletă Samsung Tab S9+
-(1, "Culoare", '{
+(7, "Culoare", '{
     "values": [
         {
             "name": "Bej",
@@ -633,7 +633,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(7, "Capacitate stocare", '{
     "values": [
         {
             "name": "256 GB",
@@ -648,7 +648,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Tabletă Samsung Tab S8+
-(1, "Culoare", '{
+(8, "Culoare", '{
     "values": [
         {
             "name": "Argintiu",
@@ -661,7 +661,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(8, "Capacitate stocare", '{
     "values": [
         {
             "name": "128 GB",
@@ -676,7 +676,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Tabletă Smart Xiaomi Pad 6
-(1, "Culoare", '{
+(9, "Culoare", '{
     "values": [
         {
             "name": "Albastru",
@@ -689,7 +689,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(9, "Capacitate stocare", '{
     "values": [
         {
             "name": "128 GB",
@@ -704,7 +704,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Tabletă Smart Xiaomi Pad 5
-(1, "Culoare", '{
+(10, "Culoare", '{
     "values": [
         {
             "name": "Alb",
@@ -717,7 +717,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(10, "Capacitate stocare", '{
     "values": [
         {
             "name": "128 GB",
@@ -732,7 +732,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Tabletă Huawei Mediapad T5
-(1, "Culoare", '{
+(11, "Culoare", '{
     "values": [
         {
             "name": "Alb",
@@ -745,7 +745,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(11, "Capacitate stocare", '{
     "values": [
         {
             "name": "64 GB",
@@ -760,7 +760,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Tabletă Huawei Mediapad T3
-(1, "Culoare", '{
+(12, "Culoare", '{
     "values": [
         {
             "name": "Alb",
@@ -773,7 +773,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(12, "Capacitate stocare", '{
     "values": [
         {
             "name": "64 GB",
@@ -788,7 +788,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Apple iPhone 15 Pro Max
-(1, "Culoare", '{
+(201, "Culoare", '{
     "values": [
         {
             "name": "Alb",
@@ -801,7 +801,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(201, "Capacitate stocare", '{
     "values": [
         {
             "name": "256 GB",
@@ -820,7 +820,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Apple iPhone 15 Pro
-(1, "Culoare", '{
+(202, "Culoare", '{
     "values": [
         {
             "name": "Alb",
@@ -833,7 +833,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(202, "Capacitate stocare", '{
     "values": [
         {
             "name": "128 GB",
@@ -856,7 +856,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Apple iPhone 15 Plus
-(1, "Culoare", '{
+(203, "Culoare", '{
     "values": [
         {
             "name": "Roz",
@@ -869,7 +869,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(203, "Capacitate stocare", '{
     "values": [
         {
             "name": "128 GB",
@@ -888,7 +888,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Apple iPhone 15
-(1, "Culoare", '{
+(204, "Culoare", '{
     "values": [
         {
             "name": "Albastru",
@@ -901,7 +901,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(204, "Capacitate stocare", '{
     "values": [
         {
             "name": "128 GB",
@@ -920,7 +920,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Apple iPhone SE 3
-(1, "Culoare", '{
+(205, "Culoare", '{
     "values": [
         {
             "name": "Roșu",
@@ -933,7 +933,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(205, "Capacitate stocare", '{
     "values": [
         {
             "name": "64 GB",
@@ -952,7 +952,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Samsung Galaxy Z Fold5
-(1, "Culoare", '{
+(206, "Culoare", '{
     "values": [
         {
             "name": "Gri",
@@ -965,7 +965,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(206, "Capacitate stocare", '{
     "values": [
         {
             "name": "256 GB",
@@ -984,7 +984,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Samsung Galaxy Z Fold4
-(1, "Culoare", '{
+(207, "Culoare", '{
     "values": [
         {
             "name": "Gri",
@@ -997,7 +997,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(207, "Capacitate stocare", '{
     "values": [
         {
             "name": "256 GB",
@@ -1016,7 +1016,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Samsung Galaxy Z Flip5
-(1, "Culoare", '{
+(208, "Culoare", '{
     "values": [
         {
             "name": "Gri",
@@ -1029,7 +1029,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(208, "Capacitate stocare", '{
     "values": [
         {
             "name": "256 GB",
@@ -1044,7 +1044,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Samsung Galaxy S24 Ultra
-(1, "Culoare", '{
+(209, "Culoare", '{
     "values": [
         {
             "name": "Gri",
@@ -1057,7 +1057,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(209, "Capacitate stocare", '{
     "values": [
         {
             "name": "256 GB",
@@ -1076,7 +1076,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Samsung Galaxy S24
-(1, "Culoare", '{
+(210, "Culoare", '{
     "values": [
         {
             "name": "Gri",
@@ -1089,7 +1089,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(210, "Capacitate stocare", '{
     "values": [
         {
             "name": "128 GB",
@@ -1104,7 +1104,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Samsung Galaxy S23 Ultra
-(1, "Culoare", '{
+(211, "Culoare", '{
     "values": [
         {
             "name": "Verde",
@@ -1117,7 +1117,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(211, "Capacitate stocare", '{
     "values": [
         {
             "name": "256 GB",
@@ -1136,7 +1136,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Samsung Galaxy A55
-(1, "Culoare", '{
+(212, "Culoare", '{
     "values": [
         {
             "name": "Mov",
@@ -1149,7 +1149,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(212, "Capacitate stocare", '{
     "values": [
         {
             "name": "128 GB",
@@ -1164,7 +1164,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Samsung Galaxy A35
-(1, "Culoare", '{
+(213, "Culoare", '{
     "values": [
         {
             "name": "Mov",
@@ -1177,7 +1177,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(213, "Capacitate stocare", '{
     "values": [
         {
             "name": "128 GB",
@@ -1192,7 +1192,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Samsung Galaxy A15
-(1, "Culoare", '{
+(214, "Culoare", '{
     "values": [
         {
             "name": "Albastru",
@@ -1205,7 +1205,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(214, "Capacitate stocare", '{
     "values": [
         {
             "name": "128 GB",
@@ -1220,7 +1220,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Samsung Galaxy A14
-(1, "Culoare", '{
+(215, "Culoare", '{
     "values": [
         {
             "name": "Auriu",
@@ -1233,7 +1233,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(215, "Capacitate stocare", '{
     "values": [
         {
             "name": "64 GB",
@@ -1248,7 +1248,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Xiaomi 12 Pro
-(1, "Culoare", '{
+(216, "Culoare", '{
     "values": [
         {
             "name": "Albastru",
@@ -1261,7 +1261,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(216, "Capacitate stocare", '{
     "values": [
         {
             "name": "64 GB",
@@ -1284,7 +1284,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Xiaomi 12T
-(1, "Culoare", '{
+(217, "Culoare", '{
     "values": [
         {
             "name": "Albastru",
@@ -1297,7 +1297,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(217, "Capacitate stocare", '{
     "values": [
         {
             "name": "64 GB",
@@ -1320,7 +1320,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Motorola 40 Pro
-(1, "Culoare", '{
+(218, "Culoare", '{
     "values": [
         {
             "name": "Albastru",
@@ -1333,7 +1333,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(218, "Capacitate stocare", '{
     "values": [
         {
             "name": "64 GB",
@@ -1352,7 +1352,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Huawei P40 Pro
-(1, "Culoare", '{
+(219, "Culoare", '{
     "values": [
         {
             "name": "Alb",
@@ -1365,7 +1365,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(219, "Capacitate stocare", '{
     "values": [
         {
             "name": "64 GB",
@@ -1384,7 +1384,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Telefon Nokia XR21
-(1, "Culoare", '{
+(220, "Culoare", '{
     "values": [
         {
             "name": "Verde",
@@ -1397,7 +1397,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     ],
     "default": 1
 }'),
-(1, "Capacitate stocare", '{
+(220, "Capacitate stocare", '{
     "values": [
         {
             "name": "64 GB",
@@ -1416,7 +1416,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Televizor Samsung QLED 85Q80C
-(1, "Diagonala", '{
+(221, "Diagonala", '{
     "values": [
         {
             "name": "138 inch",
@@ -1439,7 +1439,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Televizor Samsung QLED 65Q80T
-(1, "Diagonala", '{
+(222, "Diagonala", '{
     "values": [
         {
             "name": "138 inch",
@@ -1461,8 +1461,8 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     "default": 3
 }'),
 
--- Televizor Samsung QLED 65Q60R
-(1, "Diagonala", '{
+-- Televizor Samsung QLED 65Q60RA
+(223, "Diagonala", '{
     "values": [
         {
             "name": "138 inch",
@@ -1484,8 +1484,8 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     "default": 3
 }'),
 
--- Televizor Samsung QLED 65QN80
-(1, "Diagonala", '{
+-- Televizor Samsung QLED 65QN800B
+(224, "Diagonala", '{
     "values": [
         {
             "name": "163 inch",
@@ -1503,8 +1503,8 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     "default": 2
 }'),
 
--- Televizor Samsung QLED 85CU71
-(1, "Diagonala", '{
+-- Televizor Samsung LED 85CU7172
+(225, "Diagonala", '{
     "values": [
         {
             "name": "108 inch",
@@ -1531,7 +1531,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Televizor Samsung QLED 50Q80B
-(1, "Diagonala", '{
+(226, "Diagonala", '{
     "values": [
         {
             "name": "125 inch",
@@ -1558,7 +1558,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Televizor Samsung LED 65AU7172
-(1, "Diagonala", '{
+(227, "Diagonala", '{
     "values": [
         {
             "name": "125 inch",
@@ -1585,7 +1585,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Televizor Samsung QLED 55Q60C
-(1, "Diagonala", '{
+(228, "Diagonala", '{
     "values": [
         {
             "name": "125 inch",
@@ -1612,7 +1612,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Televizor LG OLED 65CX3LA
-(1, "Diagonala", '{
+(229, "Diagonala", '{
     "values": [
         {
             "name": "122 inch",
@@ -1635,7 +1635,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Televizor LG OLED 55G13LA
-(1, "Diagonala", '{
+(230, "Diagonala", '{
     "values": [
         {
             "name": "139 inch",
@@ -1654,7 +1654,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Televizor LG OLED 65C31LA
-(1, "Diagonala", '{
+(231, "Diagonala", '{
     "values": [
         {
             "name": "139 inch",
@@ -1673,7 +1673,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Televizor LG OLED 55B13LA
-(1, "Diagonala", '{
+(232, "Diagonala", '{
     "values": [
         {
             "name": "139 inch",
@@ -1688,7 +1688,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Televizor LG LED 86UR81003LA
-(1, "Diagonala", '{
+(233, "Diagonala", '{
     "values": [
         {
             "name": "139 inch",
@@ -1707,7 +1707,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Televizor LG OLED 48C31LA
-(1, "Diagonala", '{
+(234, "Diagonala", '{
     "values": [
         {
             "name": "121 inch",
@@ -1729,8 +1729,8 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
     "default": 0
 }'),
 
--- Televizor LG OLED 43QNED753RA
-(1, "Diagonala", '{
+-- Televizor LG OLED 43QNED7
+(235, "Diagonala", '{
     "values": [
         {
             "name": "108 inch",
@@ -1753,7 +1753,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Televizor LG LED 50UR73003LA
-(1, "Diagonala", '{
+(236, "Diagonala", '{
     "values": [
         {
             "name": "125 inch",
@@ -1772,7 +1772,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Televizor Philips LED 65PUS8518
-(1, "Diagonala", '{
+(237, "Diagonala", '{
     "values": [
         {
             "name": "126 inch",
@@ -1791,7 +1791,7 @@ INSERT INTO `digital_dreams_db`.`product_options` (`product_id`, `type`, `data`)
 }'),
 
 -- Televizor Sony LED 55X80K
-(1, "Diagonala", '{
+(239, "Diagonala", '{
     "values": [
         {
             "name": "108 inch",
