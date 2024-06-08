@@ -5,7 +5,7 @@ const imgFolder = "../img";
 
 document.addEventListener("DOMContentLoaded", async function () {
     const favoriteItemsContainer = document.getElementById("favorite-items");
-    const favorites = getCookie("session").favorites;
+    const favorites = getCookie("session").user.favorites;
 
     if (favorites.length > 0) {
         let queryString = "(";

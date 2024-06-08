@@ -77,7 +77,7 @@ function addProduct(parent, product) {
 }
 
 function addToCart(productId) {
-    const cart = getCookie("session").cart;
+    const cart = getCookie("session").user.cart;
     const cartProduct = cart.find(
         (cartProduct) => cartProduct.id === productId
     );
@@ -91,7 +91,7 @@ function addToCart(productId) {
 }
 
 function addToFavorites(productId) {
-    const favorites = getCookie("session").favorites;
+    const favorites = getCookie("session").user.favorites;
     if (favorites.includes(productId)) return;
     favorites.push(productId);
 

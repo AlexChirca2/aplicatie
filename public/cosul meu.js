@@ -5,7 +5,7 @@ const imgFolder = "../img";
 
 document.addEventListener("DOMContentLoaded", async function () {
     const cartItemsContainer = document.getElementById("cart-items");
-    const cart = getCookie("session").cart;
+    const cart = getCookie("session").user.cart;
 
     if (cart.length > 0) {
         let queryString = "(";

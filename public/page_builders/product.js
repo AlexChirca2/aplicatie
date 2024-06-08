@@ -128,7 +128,7 @@ function createWarranty(parent, duration, price) {
 }
 
 function addToCart() {
-    const cart = getCookie("session").cart;
+    const cart = getCookie("session").user.cart;
     const cartProduct = cart.find(
         (cartProduct) => cartProduct.id === product.id
     );
@@ -142,7 +142,7 @@ function addToCart() {
 }
 
 function addToFavorites() {
-    const favorites = getCookie("session").favorites;
+    const favorites = getCookie("session").user.favorites;
     if (favorites.includes(product.id)) return;
     favorites.push(product.id);
 
